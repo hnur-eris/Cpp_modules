@@ -18,6 +18,12 @@ ScavTrap::ScavTrap(const string &name)
     cout << "ScavTrap name constructor called " << endl; 
 }
 
+ScavTrap::ScavTrap(const ScavTrap &obj)
+{
+    *this = obj;
+    cout << "ScavTrap copy constructor called" << endl;
+}
+
 ScavTrap::~ScavTrap()
 {
      cout << "ScavTrap destructor called " << endl; 
