@@ -20,6 +20,18 @@ ClapTrap::~ClapTrap()
     cout << "ClapTrap destructor called" << endl;
 }
 
+ClapTrap &ClapTrap::operator = (const ClapTrap &obj)
+{
+    this->name = obj.name;
+	this->hitPoint = obj.hitPoint;
+	this->energyPoint = obj.energyPoint;
+	this->damage = obj.damage;
+	
+    cout << "Operator Overlaod Called" << endl;
+	return (*this);
+}
+
+
 void ClapTrap::attack(const string &target)
 {
     if (this->hitPoint > 0 && this->energyPoint > 0)
