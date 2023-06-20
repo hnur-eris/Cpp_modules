@@ -20,6 +20,7 @@ class ClapTrap
         ClapTrap(const string &name);
         ClapTrap(const ClapTrap &clapTrap);
         ~ClapTrap();
+        ClapTrap &operator = (const ClapTrap &obj);
 
         void attack(const string &target);
         void takeDamage(unsigned int amount);
