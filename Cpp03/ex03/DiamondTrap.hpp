@@ -6,7 +6,7 @@
 class DiamondTrap: public ScavTrap, FragTrap
 {
     private :
-        ClapTrap name;
+        string name;
     
     public :
         DiamondTrap();
