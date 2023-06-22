@@ -2,8 +2,7 @@
 
 DiamondTrap::DiamondTrap()
 {
-    this->name = "DiamondTrop";
-    ClapTrap::name = this->name + "_clap_name";
+    this->name = "DiamondTrap";
     hitPoint = FragTrap::hitPoint;
     energyPoint = ScavTrap::energyPoint;
     damage = FragTrap::damage;
@@ -11,13 +10,19 @@ DiamondTrap::DiamondTrap()
     cout << "DiamondTrap default constructor called" << endl;
 }
 
-DiamondTrap::DiamondTrap(const string &name) : ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(const string &name)
 {
-    this->name = name;
-    this->hitPoint = FragTrap::hitPoint;
-    this->energyPoint = FragTrap::energyPoint;
-    this->damage = FragTrap::damage;
+    this->name = name + "_clap_name";
+    hitPoint = FragTrap::hitPoint;
+    energyPoint = ScavTrap::energyPoint;
+    damage = FragTrap::damage;
     cout << "DiamondTrap name constructor called" << endl; 
+}
+
+void DiamondTrap::attack(const string &target)
+{
+    cout << "DiamondTrap attack function called" << endl;
+    ScavTrap::attack(target);
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &obj)
@@ -29,25 +34,25 @@ DiamondTrap::DiamondTrap(const DiamondTrap &obj)
 
 DiamondTrap &DiamondTrap::operator = (const DiamondTrap &obj)
 {
-    if (this == &obj)
+    cout << "DiamondTrap copy assignment operator "<< endl;
+
+    if (this != &obj)
         return *this;
     ClapTrap::name = obj.name + "_clap_name";
-    ScavTrap::name = obj.name;
-    FragTrap::name = obj.name;
     name = obj.name;
     this->energyPoint = obj.energyPoint;
     this->hitPoint = obj.hitPoint;
     this->damage = obj.damage;
-    return *this;
 
+    return *this;
 }
 
 void DiamondTrap::whoAmI()
 {
-    cout << "DiamondTrap " << name << " is actually ClapTrap " << ClapTrap::name << endl;
+    cout << "DiamondTrap " << name << " inherited from " << ClapTrap::name << endl;
 }
 
 DiamondTrap::~DiamondTrap()
 {
-    cout << "DiamondTrap destructor called " << endl;
+    cout << "DiamondTrap destructor called" << endl;
 }
