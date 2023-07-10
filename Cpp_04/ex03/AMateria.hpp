@@ -1,0 +1,32 @@
+#ifndef AMATERIA_HPP
+#define AMATERIA_HPP
+
+#include <iostream>
+#include <string>
+#include "ICharacter.hpp"
+
+using std::cout;
+using std::endl;
+using std::string;
+
+class ICharacter;
+
+class AMateria
+{
+protected:
+    string type;
+
+public:
+    AMateria(string const &type);
+    AMateria(const AMateria &obj);
+    virtual ~AMateria();
+
+    AMateria &operator=(const AMateria &obj);
+
+    string const &getType() const;
+
+    virtual AMateria *clone() const = 0;
+    virtual void use(ICharacter &target);
+};
+
+#endif
