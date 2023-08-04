@@ -3,8 +3,9 @@
 int main()
 {
     try {
-        Bureaucrat nur("nur", 159);
-        cout << nur << endl;
+        Bureaucrat nur("nur", 9);
+        Form form("wawa form", 15, 15);
+        nur.signForm(form);
     }
     catch (const std::exception &e) {
         std::cerr << e.what() << endl;
