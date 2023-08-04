@@ -2,6 +2,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 using std::string;
 using std::cout;
@@ -22,7 +25,7 @@ class Bureaucrat
         string getName() const;
         int getGrade() const;
         void setGrade(int gradeValue);
-        //void signForm();
+        void signForm(Form &obj) const;
 
         class GradeTooHighException : public std::exception 
         {
