@@ -25,15 +25,17 @@ class Bureaucrat
 
         class GradeTooHighException : public std::exception 
         {
-            const char *what() const throw() {
-                return "Bureaucrat grade is too high!";
-            }
+            public :
+                const char *what() const throw() {
+                    return "Bureaucrat grade is too high!";
+                }
         };
         class GradeTooLowException : public std::exception 
         {
-            const char *what() const throw() {
-                return "Bureaucrat grade is too low!";
-            }
+            public :
+                const char *what() const throw() {
+                    return "Bureaucrat grade is too low!";
+                }
         };
 };
 
