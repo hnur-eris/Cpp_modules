@@ -17,7 +17,7 @@ Bureaucrat::Bureaucrat(string names, int grades)
 
 Bureaucrat::~Bureaucrat()
 {
-    cout << "destructor called" << endl;
+    cout << "bureaucrat destructor called" << endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &obj)
@@ -58,6 +58,11 @@ void Bureaucrat::setGrade(int gradeValue)
         throw GradeTooLowException();
     else
         grade = gradeValue;
+}
+
+void Bureaucrat::signForm(Form &obj) const
+{
+    obj.beSigned(*this);
 }
 
 std::ostream &operator << (std::ostream &out, const Bureaucrat &obj)
