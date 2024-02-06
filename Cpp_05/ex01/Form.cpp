@@ -1,82 +1,73 @@
 #include "Form.hpp"
 
-Form::Form() : name_("Default name"), signPos(false), gradeToSign(1), gradeToExec(1)
-{
-
+Form::Form(): name("default") , gradeToSign(150) , gradeToExecute(150) {
     cout << "default constructor called" << endl;
 }
 
-Form::Form(string name, int gradeToSign, int gradeToExec) : name_(name), gradeToSign(gradeToSign), gradeToExec(gradeToExec)
+Form::Form(const string fName, const int grToSign, const int grToExec) : name(fName) , gradeToSign(grToSign) , gradeToExecute(grToExec)
 {
-
-    cout << "name constructor called" << endl;
+    isSigned = false;
+    if (gradeToSign > 150 || gradeToExecute > 150)
+        throw Form::GradeTooHighException();
+    else if (gradeToSign < 1 || gradeToExecute < 1)
+        throw Form::GradeTooLowException();
+    cout << "Form constructor called" << endl;
 }
-Form::Form(const Form &obj): name_("Default name"), signPos(false), gradeToSign(1), gradeToExec(1)
-{
-    *this = obj;
+
+Form::Form(const Form &obj) : name(obj.getName()) , gradeToSign(obj.getGradeToSign()) , gradeToExecute(obj.getGradeToExecute()) {
+    isSigned = obj.getIsSigned();    
 }
 
-Form &Form::operator = (const Form &obj)
+Form &Form::operator= (const Form &obj)
 {
-    if (this != &obj)
-    {
-        *this = obj;
-    }
+    isSigned = obj.getIsSigned();
     return *this;
 }
 
 Form::~Form()
 {
-    cout << "Form Destructor called" << endl;
+    cout << "Form Destructor is called" << endl;
 }
 
-void Form::setSigned(bool signPos)
-{
-    this->signPos = signPos;
+string Form::getName() const {
+    return name;
 }
 
-string Form::getName() const
-{
-    return this->name_;
+bool Form::getIsSigned() const {
+    return isSigned;
 }
 
-int Form::getGradeToSign() const
-{
-    return this->gradeToSign;
+int Form::getGradeToSign() const {
+    return gradeToSign;
 }
 
-int Form::getGradeToExec() const 
-{
-    return this->gradeToExec;
+int Form::getGradeToExecute() const {
+    return gradeToExecute;
 }
 
-bool Form::isSigned() const
-{
-    return this->signPos;
-}
-
-void Form::beSigned(const Bureaucrat &person)
-{
-    if (person.getGrade() < 1)
-    {
-        cout << "this person does not exist in real" << endl;
-        throw GradeTooHighException();
+void Form::beSigned(Bureaucrat &bureaucrat) {
+    if (bureaucrat.getGrade() <= this->getGradeToSign()) {
+        isSigned = true;
+        cout << bureaucrat.getName() << " signed " << name << endl;
     }
-    else if (person.getGrade() <= this->gradeToSign)
-    {
-        this->signPos = true;
-        cout << person.getName() << " signed " << this->name_ << endl;
-    }
-    else
-    {
-        cout << person.getName() << " couldn't signed because " << this->name_ << " didn't have enough rank to sign "<< endl;
-        throw GradeTooLowException();
+    else {
+        cout << bureaucrat.getName() << " couldn't sign " << name << " because of grade" << endl;
+        throw Form::GradeTooLowException();
     }
 }
 
-std::ostream &operator << (std::ostream &out , const Form &obj){
-	out << obj.getName() + " form is " << (obj.isSigned() ? "is signed," : "is not signed,");
-	out << " requires grade " << obj.isSigned() << " to sign and grade ";
-	out << obj.getGradeToExec() << " to execute";
+const char * Form::GradeTooHighException::what() const throw() {
+    return "Grade is too high !!\n";
+}
+
+const char * Form::GradeTooLowException::what() const throw() {
+    return "Grade is too low !!\n";
+}
+
+
+std::ostream &operator<<(std::ostream &out , Form &form){
+	out << form.getName() + " form is " << (form.getIsSigned() ? "signed," : "not signed,");
+	out << " requires grade " << form.getGradeToSign() << " to sign and grade ";
+	out << form.getGradeToExecute() << " to execute";
 	return (out);
 }
