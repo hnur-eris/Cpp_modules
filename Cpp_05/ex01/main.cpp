@@ -1,14 +1,19 @@
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int main()
-{
-    try {
-        Bureaucrat nur("nur", 9);
-        Form form("wawa form", 15, 15);
-        nur.signForm(form);
+int main() {
+    
+    try
+    {
+        Bureaucrat potter("harry", 3);
+        cout << potter << endl;
+
+        Form mystery("mysteryss" , 10 , 10);
+        cout << mystery << endl;
+        potter.signForm(mystery);      
     }
-    catch (const std::exception &e) {
+    catch(const std::exception &e)
+    {
         std::cerr << e.what() << endl;
     }
-    return 0;
+    
 }
