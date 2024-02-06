@@ -1,54 +1,37 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#pragma once
 
-#include <iostream>
 #include "Bureaucrat.hpp"
 class Bureaucrat;
+class Form {
 
-using std::string;
-using std::cout;
-using std::endl;
-
-class Form
-{
     private :
-        const string name_;
-        bool signPos;
+        const string name;
+        bool isSigned;
         const int gradeToSign;
-        const int gradeToExec;
-    
+        const int gradeToExecute;
+
     public :
         Form();
+        Form(const string fName, const int grToSign, const int grToExec);
         Form(const Form &obj);
-        Form(string name, int gradeToSign, int gradeToExec);
         Form &operator = (const Form &obj);
         ~Form();
 
-        void setSigned(bool signPos);
-        
-        void beSigned(const Bureaucrat &person);
-
         string getName() const;
+        bool getIsSigned() const;
         int getGradeToSign() const;
-        int getGradeToExec() const;
-        bool isSigned() const;
+        int getGradeToExecute() const;
 
-        class GradeTooHighException : public std::exception
-        {
-            public :
-                const char *what() const throw() {
-                    return "This form sign' grade too high exception";
-                }
+        void beSigned(Bureaucrat &bureaucrat);
+
+        class GradeTooHighException : public std::exception {
+            virtual const char *what() const throw();
         };
-        class GradeTooLowException : public std::exception
-        {
-            public :
-                const char *what() const throw() {
-                    return "This form sign' grade too low exception";
-                }
+
+        class GradeTooLowException : public std::exception {
+            virtual const char *what() const throw();
         };
+
 };
 
-std::ostream &operator<<(std::ostream &out , const Form &obj);
-
-#endif
+std::ostream& operator<<(std::ostream &out, Form &form);
