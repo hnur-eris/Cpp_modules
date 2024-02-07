@@ -1,25 +1,21 @@
-#include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main() {
     
     try
     {
         Bureaucrat potter("harry", 3);
-        ShrubberyCreationForm hogswort("Hogswort");
+        
+        Intern hermione;
 
-        potter.signForm(hogswort);
-        potter.executeForm(hogswort);
+        AForm *Dumbledore;
+        Dumbledore = hermione.makeForm("robotomy request", "Bender");
+        potter.signForm(*Dumbledore);
+        potter.executeForm(*Dumbledore);
 
-        RobotomyRequestForm wand("wand");
-        potter.signForm(wand);
-        potter.executeForm(wand);
-
-        PresidentialPardonForm voldermore("voldermore");
-        potter.signForm(voldermore);
-        potter.executeForm(voldermore);
+        AForm *voldermort = hermione.makeForm("magic", "Bender");
+        potter.signForm(*voldermort);
+        potter.executeForm(*voldermort);
 
     }
     catch(const std::exception &e)
