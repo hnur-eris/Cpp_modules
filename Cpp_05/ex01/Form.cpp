@@ -15,7 +15,8 @@ Form::Form(const string fName, const int grToSign, const int grToExec) : name(fN
 }
 
 Form::Form(const Form &obj) : name(obj.getName()) , gradeToSign(obj.getGradeToSign()) , gradeToExecute(obj.getGradeToExecute()) {
-    isSigned = obj.getIsSigned();    
+	isSigned = obj.getIsSigned();
+	*this = obj; 
 }
 
 Form &Form::operator= (const Form &obj)
