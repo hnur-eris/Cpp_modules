@@ -6,5 +6,5 @@ using std::cout;
 using std::endl;
 using std::string;
 
-template <typename T>
-void iter(T *arr, unsigned long lenght, void (*fun)(T));
+template <typename T, typename F>
+void iter(T *arr, unsigned long lenght, F fun);
