@@ -3,13 +3,11 @@
 template <typename T>
 int easyfind(T &container, int value) {
 
-//C++'ta, bir template içinde başka bir template'in içindeki türleri kullanırken,
-//bu türlerin adının önüne typename anahtar kelimesini eklemek gerekir.
     typename T::iterator i = std::find(container.begin(), container.end(), value );
     if (i == container.end())
         return -1;
 
-    return std::distance(container.begin(), i);//başlangıc adresinden bulduğumuz i adresi arasında ne kadar değer varsa onu döner
+    return std::distance(container.begin(), i);
 }
 
 int main() {
