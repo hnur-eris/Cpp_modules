@@ -62,13 +62,9 @@ int Span::longestSpan() {
     return max;
 }
 
-void Span::addNumber(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end, int repeatValue) {
+void Span::addNumber() {
 
-    int numToAdd = std::distance(begin, end);
-    if (list.size() + numToAdd > size)
-        throw std::runtime_error("there is not as much space in my list as the element I want to add");
-
-    for (int i = 0; i < numToAdd && size < list.size(); i++){
-        this->addNumber(repeatValue);
-    }
+    srand(time(NULL));
+    for (unsigned int i = 0; i < size; i++)
+        list.push_back(rand());
 }
