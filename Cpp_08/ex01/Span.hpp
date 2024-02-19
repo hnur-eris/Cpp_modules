@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <ctime>
+
 using std::cout;
 using std::endl;
 using std::string;
@@ -25,7 +27,7 @@ class Span {
         unsigned int getSize() const;
         vector<int> getList() const;
         void addNumber(int number);
-        void addNumber(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end, int repeatValue);
+        void addNumber();
         int shortestSpan();
         int longestSpan();
 
